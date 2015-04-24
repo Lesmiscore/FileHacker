@@ -1,0 +1,72 @@
+<Questions>
+	<Question>
+		<Text>readの過去形は？</Text>
+		<Tip>全て小文字で答えなさい</Tip>
+		<Answer>read</Answer>
+	</Question>
+	<Question>
+		<Text>林檎　これどう読む？</Text>
+		<Tip>ひらがなで答えなさい</Tip>
+		<Answer>りんご</Answer>
+	</Question>
+	<Question>
+		<Text>「魚」へんに「弱」い。//なんて読む？</Text>
+		<Tip>ひらがなで答えなさい</Tip>
+		<Answer>いわし</Answer>
+	</Question>
+	<Question>
+		<Text>Japanはどこ？//こそあど言葉で答えなさい</Text>
+		<Tip>ひらがなで答えなさい</Tip>
+		<Answer>ここ</Answer>
+	</Question>
+	<Question>
+		<Text>韓国は栃木県からして八方位からどこ？</Text>
+		<Tip>漢字で答えなさい</Tip>
+		<Answer>東</Answer>
+	</Question>
+	<Question>
+		<Text>She Her Her のあとに続くのは？</Text>
+		<Tip>全て小文字で答えなさい</Tip>
+		<Answer>hers</Answer>
+	</Question>
+	<Question>
+		<Text>I My Me のあとに続くのは？</Text>
+		<Tip>全て小文字で答えなさい</Tip>
+		<Answer>mine</Answer>
+	</Question>
+	<Question>
+		<Text>8月15日は何の日？</Text>
+		<Tip>漢字で答えなさい</Tip>
+		<Answer>終戦記念日</Answer>
+	</Question>
+	<Question>
+		<Text>8月15日は韓国では何の日？</Text>
+		<Tip>漢字で答えなさい</Tip>
+		<Answer>光復節</Answer>
+	</Question>
+	<Question>
+		<Text>一日は何秒か</Text>
+		<Tip>数字で答えなさい</Tip>
+		<Answer>86400</Answer>
+	</Question>
+	<Question>
+		<Text>動詞のmineはどういう意味？</Text>
+		<Tip>漢字とひらがなで答えなさい</Tip>
+		<Answer>掘る</Answer>
+	</Question>
+	<Question>
+		<Text>Wikipedia なんて読む？</Text>
+		<Tip>カタカナで答えなさい</Tip>
+		<Answer>ウィキペディア</Answer>
+	</Question>
+	<Question>
+		<Text>FileHacker なんて読む？</Text>
+		<Tip>カタカナで答えなさい</Tip>
+		<Answer>ファイルハッカー</Answer>
+	</Question>
+	<Question>
+		<Text>"バカ".Replace("カバ".IndexOf(0), "バ")//.Replace("バ", "カ").PadLeft(3).Replace(" カ", "バ")//この結果は？//(長すぎるため、改行しています)</Text>
+		<Tip>結果をそのまま答えなさい</Tip>
+		<Answer>バカ</Answer>
+	</Question>
+</Questions>

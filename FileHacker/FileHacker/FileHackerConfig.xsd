@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+	attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element
+		name="FileHacker">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element
+					maxOccurs="1"
+					name="exceptions">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element
+								maxOccurs="unbounded"
+								name="user">
+								<xs:complexType>
+									<xs:attribute
+										name="name"
+										type="xs:string"
+										use="required" />
+									<xs:attribute
+										name="mode"
+										type="xs:string"
+										use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element
+					maxOccurs="1"
+					name="config">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element
+								maxOccurs="1"
+								name="ToPath"
+								type="xs:string" />
+							<xs:element
+								maxOccurs="1"
+								name="FatManUserName"
+								type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element
+						maxOccurs="1"
+						name="ConfigVariable">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element
+								maxOccurs="unbounded"
+								name="data">
+								<xs:complexType>
+									<xs:attribute
+										name="name"
+										type="xs:string"
+										use="required" />
+									<xs:attribute
+										name="data"
+										type="xs:string"
+										use="required" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

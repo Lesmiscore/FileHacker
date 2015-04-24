@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FileHacker>
+	<!--例外指定-->
+	<exceptions>
+		<!--
+		書き方説明
+		使うタグ:userのみ
+		userタグのプロパティ
+		name	ユーザー名(*****kh10 か kyotsu** か teacher**)
+		mode	例外モード
+			modeプロパティの内容
+			strict	FileHackerを起動後、コピーされたファイルを削除し、終了
+			normal	FileHackerを起動後、すぐに終了
+			allow	FileHackerを起動後、そのまま動作(タグ無くても可)
+			special	FileHackerを起動後、そのまま動作。ただし、機能強化版(旧ファットマン仕様)
+			nocopy	FileHackerを起動後、そのまま動作。ただし、コピー無し。
+			spnc	FileHackerを起動後、そのまま動作。ただし、コピー無し。それ以外は、旧ファットマン仕様。
+			debug	normalと同じ扱い。ただしデバッグ機用
+			上記以外はallow扱い
+		-->
+		<!--俺-->
+		<user
+			name="13108kh10"
+			mode="strict"/>
+
+		<!--ホセ-->
+		<user
+			name="13090kh10"
+			mode="strict"/>
+
+		<!--たっつあん-->
+		<user
+			name="13174kh10"
+			mode="strict"/>
+
+		<!--リカルド-->
+		<user
+			name="13035kh10"
+			mode="strict"/>
+
+		<!--ファットマン-->
+		<user
+			name="12108kh10"
+			mode="special"/>
+
+		<!--稲葉-->
+		<user
+			name="13066kh10"
+			mode="special"/>
+
+		<!--デバッグ機用-->
+		<user
+			name="nao"
+			mode="debug"/>
+	</exceptions>
+
+	<!--変更禁止！ Do not modify!-->
+	<config>
+		<!--ファイルハッカーのコピー先(新PC)-->
+		<ToPath>\\pcjhkhsv01\生徒共用\FileHacker</ToPath>
+
+		<!--ファットマンのユーザー名-->
+		<FatManUserName>12108kh10</FatManUserName>
+	</config>
+
+	<!--設定変数-->
+	<ConfigVariable>
+		<!--リモート操作許可-->
+		<data
+			name="AllowRemote"
+			data="True"/>
+		
+		<!--タスクマネージャー終了許可-->
+		<data
+			name="AllowKillTaskManager"
+			data="True"/>
+	</ConfigVariable>
+</FileHacker>

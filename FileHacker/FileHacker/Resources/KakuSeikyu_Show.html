@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <!--クリックさせるページ-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script>
+        function Move() {
+            location.href="app-page:pay"
+        }
+    </script>
+    <style>
+        p.horizontal {
+            box-orient: horizontal;
+            -moz-box-orient: horizontal;
+        }
+
+        p#title {
+            background: #eeb6ee;
+            color: red;
+            text-align: center;
+            -moz-box-flex: 1;
+            box-flex: 1;
+            font-size: 30px;
+        }
+
+        P.space {
+            -moz-box-flex: 2;
+            box-flex: 2;
+        }
+
+        div.blank1 {
+            height: 50px;
+        }
+
+        button#dlbutton {
+            font-size: 20px;
+            align-content: center;
+            align-items:center;
+            border-radius: 10px;
+            width: 300px;
+            height: 50px;
+            color: white;
+            background-clip: border-box;
+            border-style: solid;
+            border-color: pink;
+            border-width: 5px;
+            background-color: linear-gradient(pink,white);
+            background-color: -webkit-gradient(linear,left top,left bottom,from(pink),to(white));
+            background-color: pink;
+        }
+
+            button#dlbutton:hover {
+                /*font-size: 20px;
+                border-radius: 10px;
+                width: 120px;
+                height: 50px;*/
+                color: pink;
+                background-clip: border-box;
+                border-style: solid;
+                border-color: pink;
+                border-width: 5px;
+                background-color: linear-gradient(white,pink);
+                background-color: -webkit-gradient(linear,left top,left bottom,from(white),to(pink));
+                background-color: white;
+            }
+
+            button#dlbutton:active {
+                /*font-size: 20px;
+                border-radius: 10px;
+                width: 120px;
+                height: 50px;*/
+                color: white;
+                background-clip: border-box;
+                border-style: solid;
+                border-color: red;
+                border-width: 5px;
+                background-color: linear-gradient(red,white);
+                background-color: -webkit-gradient(linear,left top,left bottom,from(red),to(white));
+                background-color: red;
+            }
+    </style>
+</head>
+<body>
+    <p class="horizontal"></p><p class="horizontal" id="title">18禁工口ゲーの紹介</p><p class="space,horizontal"></p>
+    <div class="blank1"></div>
+    <button id="dlbutton" onclick="Move();">今すぐダウンロード</button>
+</body>
+</html>
