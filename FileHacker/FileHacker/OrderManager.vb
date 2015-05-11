@@ -4,6 +4,7 @@ Imports System.IO
 'FH本体
 Public Class OrderManager
     Shared addresses As IEnumerable(Of KeyValuePair(Of String, UShort)) = Iterator Function() As IEnumerable(Of KeyValuePair(Of String, Integer))
+                                                                              'アドレス一覧
                                                                               Yield New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 4127)
                                                                               Yield New KeyValuePair(Of String, Integer)("nao20010128nao.jpn.ph", 4127)
                                                                               Yield New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 5917)
