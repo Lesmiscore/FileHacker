@@ -70,4 +70,7 @@ Public Class Main
     Private Sub SendChengeWallpaper_Click(sender As Object, e As EventArgs) Handles SendChengeWallpaper.Click
         PictureSelector.ShowDialog()
     End Sub
+    Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

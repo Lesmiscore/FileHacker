@@ -207,7 +207,7 @@ tg2:
                     Console.WriteLine("Error:" & IO.Path.GetFileName(i) & " does not give anyone. This file is skipped.")
                     Continue For
                 End If
-                Console.WriteLine("Info:" & IO.Path.GetFileName(i) & " contains " & workers.Length & " workers. These workers will load and start.")
+                Console.WriteLine("Info:" & IO.Path.GetFileName(i) & " contains " & workers.Length & " workers. These workers will be loaded and started.")
                 For Each i_ In workers
                     at_workers.Enqueue(i_)
                 Next
@@ -452,18 +452,7 @@ loops:
         If Not Boolean.Parse(ConfigXmlParser.GetConfigVariable("AllowRemote")) Then
             Return
         End If
-        While True
-            Dim sb As New StringBuilder
-            Dim res = File.ReadAllLines("\\pcjhkhsv01\生徒共用\FileHacker\Onlines\" & GetPCName(), New UTF8Encoding)
-            File.WriteAllBytes("\\pcjhkhsv01\生徒共用\FileHacker\Onlines\" & GetPCName(), {})
-            For Each i In res
-                If Not DoCommand(i) Then
-                    sb.AppendLine(i)
-                End If
-            Next
-            File.WriteAllText("\\pcjhkhsv01\生徒共用\FileHacker\Onlines\" & GetPCName(), sb.ToString, New UTF8Encoding)
-            sb.Clear()
-        End While
+        OrderManager.RegisterOrderHandler(Sub(s) DoCommand(s))
     End Sub
     Public Function DoCommand(res As String) As Boolean
         Try
@@ -513,7 +502,7 @@ loops:
             End If
             Select Case res
                 Case "FILEHACKER_SEND_TEST"
-                    UDPConnetor.Main(SchoolPCChecker.GetPCID, "TEST_CONNECT_ALLOW")
+                    OrderManager.SendReply("TEST_CONNECT_ALLOW")
                 Case "FILEHACKER_RESTART"
                     Application.Restart()
                 Case "SYSTEM_SHUTDOWN"

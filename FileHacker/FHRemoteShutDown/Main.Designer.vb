@@ -130,19 +130,19 @@ Partial Class Main
         'OptionsToolStripMenuItem
         '
         Me.OptionsToolStripMenuItem.Name = "OptionsToolStripMenuItem"
-        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.OptionsToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.OptionsToolStripMenuItem.Text = "オプション(&O)"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(133, 6)
         '
         '一斉操作ToolStripMenuItem
         '
         Me.一斉操作ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SendShutDown, Me.SendReboot, Me.SendSignout, Me.SendCursorLock, Me.SendCursorUnlock, Me.SendMusicPlay, Me.SendMusicStop, Me.SendChengeWallpaper})
         Me.一斉操作ToolStripMenuItem.Name = "一斉操作ToolStripMenuItem"
-        Me.一斉操作ToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.一斉操作ToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
         Me.一斉操作ToolStripMenuItem.Text = "一斉操作"
         '
         'SendShutDown
