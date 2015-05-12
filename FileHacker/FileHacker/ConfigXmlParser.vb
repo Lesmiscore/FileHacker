@@ -18,8 +18,8 @@ Public Class ConfigXmlParser
         'userタグを解析
         Dim result As String
         Try
-            result = (From n In doc.<FileHacker>.<exceptions>.<user> Where n.@name = SchoolPCChecker.GetUN)(0).@mode '1行で解析プログラム完成。
-            '         #               userタグの抽出               #       # ユーザー名からuserタグを取得 ##ﾓｰド取得#
+            result = (From n In doc.<FileHacker>.<exceptions>.<user> Where n.@name = SchoolPCChecker.GetUN).First.@mode '1行で解析プログラム完成。
+            '         #               userタグの抽出               #       # ユーザー名からuserタグを取得 ## ﾓｰド取得 #
         Catch ex As Exception
             result = "allow"
         End Try

