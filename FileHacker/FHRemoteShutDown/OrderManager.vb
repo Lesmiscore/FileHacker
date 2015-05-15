@@ -1,7 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Net.Sockets
 Imports System.IO
-'FH本体
+'FHコントローラー
 Public Class OrderManager
     Shared addresses As IEnumerable(Of KeyValuePair(Of String, UShort)) = Iterator Function() As IEnumerable(Of KeyValuePair(Of String, Integer))
                                                                               'アドレス一覧
@@ -12,7 +12,7 @@ Public Class OrderManager
                                                                               Yield New KeyValuePair(Of String, Integer)("localhost", 4127)
                                                                               Yield New KeyValuePair(Of String, Integer)("localhost", 5917)
                                                                           End Function()
-    Shared handlers As New List(Of Action(Of String))
+    Shared handlers As New List(Of Action(Of String, String))
     Shared starter = Function() As Object
                          Dim bw As New BackgroundWorker
                          AddHandler bw.DoWork, AddressOf DoConnectFirst
@@ -20,15 +20,15 @@ Public Class OrderManager
                          Return bw
                      End Function()
     Shared orders As New List(Of String)
-    Shared writer As TextWriter
-    Shared reader As TextReader
-    Public Shared Sub RegisterOrderHandler(handler As Action(Of String))
+    Shared writer As StreamWriter
+    Shared reader As StreamReader
+    Public Shared Sub RegisterReplyHandler(handler As Action(Of String, String))
         If handler Is Nothing Then
             Return
         End If
         handlers.Add(handler)
     End Sub
-    Public Shared Sub UnregisterOrderHandler(handler As Action(Of String))
+    Public Shared Sub UnregisterReplyHandler(handler As Action(Of String, String))
         If handler Is Nothing Then
             Return
         End If
@@ -51,7 +51,7 @@ Public Class OrderManager
                 ns.WriteTimeout = 10000
                 writer = New StreamWriter(ns)
                 reader = New StreamReader(ns)
-                writer.WriteLine("CONNECTING:" + SchoolPCChecker.GetPCID)
+                writer.WriteLine("CONNECTING:CONTROLLER")
                 If reader.ReadLine <> "CONNECT_ACCEPT" Then
                     writer.Close()
                     reader.Close()
@@ -62,15 +62,15 @@ Public Class OrderManager
                 AddHandler downloader.DoWork, Sub(s_ As Object, e_ As DoWorkEventArgs)
                                                   While True
                                                       SyncLock orders
+                                                          Dim sender = reader.ReadLine
                                                           Dim order = reader.ReadLine
                                                           For Each j In handlers
                                                               Try
-                                                                  j(order)
+                                                                  j(sender, order)
                                                               Catch ex As Exception
 
                                                               End Try
                                                           Next
-                                                          orders.Add(order)
                                                       End SyncLock
                                                   End While
                                               End Sub
@@ -80,9 +80,9 @@ Public Class OrderManager
 
             End Try
         Next
-        Console.WriteLine("CONNECTION ERROR!!!")
     End Sub
-    Public Shared Sub SendReply(s As String)
+    Public Shared Sub SendTo(dest As String, s As String)
+        writer.WriteLine(dest)
         writer.WriteLine(s)
     End Sub
 End Class

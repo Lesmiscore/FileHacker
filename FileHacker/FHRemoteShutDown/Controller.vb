@@ -45,8 +45,7 @@ Public Class Controller
     End Sub
     Private Sub PictureUploader_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles PictureUploader.DoWork
         Dim s As String = PictureTools.GetWallpaperChangeScriptText(e.Argument)
-        UDPConnetor.Main(PCID, s)
-        UDPConnetor.Main(PCID, s)
+        OrderManager.SendTo(PCID, s)
     End Sub
     Private Sub PictureUploader_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles PictureUploader.RunWorkerCompleted
         Status.Text = "アップロードが完了しました。壁紙はもうすぐ変更されます。"
@@ -55,23 +54,19 @@ Public Class Controller
         CheckResponse1()
     End Sub
     Private Sub CheckResponse_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles CheckResponse.DoWork
-        Dim exb As Exception = Nothing
-        While True
-            Dim resp As String
-            Try
-                resp = UDPConnetor.Main(PCID, "FILEHACKER_SEND_TEST".ToCharArray)
-            Catch ex As Exception
-                If exb Is Nothing Then
-                    exb = ex
-                ElseIf exb Is ex Then
-                    e.Result = ex
-                    Return
-                End If
-            End Try
-            If resp IsNot Nothing AndAlso resp.Contains("TEST_CONNECT_ALLOW") Then
-                Return
-            End If
-        End While
+        OrderManager.SendTo(PCID, "FILEHACKER_SEND_TEST")
+        Dim deleg As Action(Of String, String) = Sub(senderName As String, reply As String)
+                                                     If senderName <> PCID Then
+                                                         Return
+                                                     End If
+                                                     If reply = "TEST_CONNECT_ALLOW" Then
+                                                         Invoke(Sub()
+                                                                    Status.Text = "応答を確認しました。"
+                                                                End Sub)
+                                                         OrderManager.UnregisterReplyHandler(deleg)
+                                                     End If
+                                                 End Sub
+        OrderManager.RegisterReplyHandler(deleg)
     End Sub
     Private Sub CheckResponse_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles CheckResponse.RunWorkerCompleted
         If e.Result Is Nothing Then
@@ -144,9 +139,7 @@ Public Class Controller
     End Sub
     Private Sub SignalSender_DoWork(sender As Object, e As DoWorkEventArgs) Handles SignalSender.DoWork
         Dim mes As String = e.Argument
-        UDPConnetor.Main(PCID, mes)
-        SignalSender.ReportProgress(0, 1)
-        UDPConnetor.Main(PCID, mes)
+        OrderManager.SendTo(PCID, mes)
         SignalSender.ReportProgress(0, 2)
         SignalSender.ReportProgress(0, "信号を送信しました。")
     End Sub
@@ -205,12 +198,12 @@ Public Class Controller
                 Status.Text = "キャンセルされました。"
                 Return
             End If
-            tmp += Convert.ToBase64String(New UTF8Encoding().GetBytes(tmp2)) & ";"
+            tmp += Convert.ToBase64String(Encoding.UTF8.GetBytes(tmp2)) & ";"
             tmp2 = an.AskString("起動するプロセスのコマンド文字列を入力して下さい。", Nothing)
             If tmp2 = Nothing Then
                 tmp2 = ""
             End If
-            tmp += Convert.ToBase64String(New UTF8Encoding().GetBytes(tmp2))
+            tmp += Convert.ToBase64String(Encoding.UTF8.GetBytes(tmp2))
         End Using
         SignalSender.RunWorkerAsync(tmp)
     End Sub
