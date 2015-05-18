@@ -3,15 +3,6 @@ Imports System.Net.Sockets
 Imports System.IO
 'FHコントローラー
 Public Class OrderManager
-    Shared addresses As IEnumerable(Of KeyValuePair(Of String, UShort)) = Iterator Function() As IEnumerable(Of KeyValuePair(Of String, Integer))
-                                                                              'アドレス一覧
-                                                                              Yield New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 4127)
-                                                                              Yield New KeyValuePair(Of String, Integer)("nao20010128nao.jpn.ph", 4127)
-                                                                              Yield New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 5917)
-                                                                              Yield New KeyValuePair(Of String, Integer)("nao20010128nao.jpn.ph", 5917)
-                                                                              Yield New KeyValuePair(Of String, Integer)("localhost", 4127)
-                                                                              Yield New KeyValuePair(Of String, Integer)("localhost", 5917)
-                                                                          End Function()
     Shared handlers As New List(Of Action(Of String, String))
     Shared starter = Function() As Object
                          Dim bw As New BackgroundWorker
@@ -36,7 +27,12 @@ Public Class OrderManager
     End Sub
     Private Shared Sub DoConnectFirst(s As Object, e As DoWorkEventArgs)
         Dim tcp As TcpClient
-        For Each i In addresses
+        For Each i In {New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 4127),
+                       New KeyValuePair(Of String, Integer)("nao20010128nao.jpn.ph", 4127),
+                       New KeyValuePair(Of String, Integer)("nao20010128nao.dip.jp", 5917),
+                       New KeyValuePair(Of String, Integer)("nao20010128nao.jpn.ph", 5917),
+                       New KeyValuePair(Of String, Integer)("localhost", 4127),
+                       New KeyValuePair(Of String, Integer)("localhost", 5917)}
             Try
                 Dim ipOrHost As String = i.Key
                 Dim port As Integer = i.Value
