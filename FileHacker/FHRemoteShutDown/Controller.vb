@@ -101,7 +101,8 @@ Public Class Controller
         SignalSender.RunWorkerAsync("SYSTEM_REBOOT")
     End Sub
     Public Sub SendShutDown() Implements FHRemoteHost.SendShutDown
-        SignalSender.RunWorkerAsync("SYSTEM_SHUTDOWN")
+        'SignalSender.RunWorkerAsync("SYSTEM_SHUTDOWN")
+        OrderManager.SendTo(PCID, "SYSTEM_SHUTDOWN")
     End Sub
     Public Sub SendSignOut() Implements FHRemoteHost.SendSignOut
         SignalSender.RunWorkerAsync("SYSTEM_SIGNOUT")
